@@ -1,0 +1,25 @@
+description: Domain event published by connectivity service when device connects
+contentType: application/json
+payload:
+  type: object
+  required:
+    - deviceId
+    - timestamp
+    - sessionId
+    - ipAddress
+  properties:
+    deviceId:
+      type: string
+      description: Device identifier
+    timestamp:
+      type: string
+      format: date-time
+      description: Connection timestamp
+    sessionId:
+      type: string
+      format: uuid
+      description: Connection session ID
+    ipAddress:
+      type: string
+      format: ipv4
+      description: Device IP address

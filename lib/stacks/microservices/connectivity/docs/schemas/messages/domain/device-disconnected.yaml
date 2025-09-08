@@ -1,0 +1,24 @@
+description: Domain event published by connectivity service when device disconnects
+contentType: application/json
+payload:
+  type: object
+  required:
+    - deviceId
+    - timestamp
+    - sessionId
+    - duration
+  properties:
+    deviceId:
+      type: string
+      description: Device identifier
+    timestamp:
+      type: string
+      format: date-time
+      description: Disconnection timestamp
+    sessionId:
+      type: string
+      format: uuid
+      description: Connection session ID
+    duration:
+      type: integer
+      description: Connection duration in seconds

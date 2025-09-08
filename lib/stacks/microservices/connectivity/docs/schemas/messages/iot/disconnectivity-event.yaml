@@ -1,0 +1,54 @@
+description: Raw disconnectivity event received from AWS IoT Core when device disconnects
+contentType: application/json
+payload:
+  type: object
+  required:
+    - clientId
+    - thingName
+    - timestamp
+    - eventType
+    - sessionIdentifier
+    - principalIdentifier
+    - clientInitiatedDisconnect
+    - disconnectReason
+    - versionNumber
+  properties:
+    clientId:
+      type: string
+      description: Client identifier
+    thingName:
+      type: string
+      description: AWS IoT Thing name
+    timestamp:
+      type: integer
+      description: Unix timestamp in milliseconds
+    eventType:
+      type: string
+      enum: [disconnected]
+      description: Connection event type
+    sessionIdentifier:
+      type: string
+      format: uuid
+      description: Session UUID
+    principalIdentifier:
+      type: string
+      description: Principal identifier
+    clientInitiatedDisconnect:
+      type: boolean
+      description: Whether disconnect was initiated by client
+    disconnectReason:
+      type: string
+      description: Reason for disconnection
+    versionNumber:
+      type: integer
+      description: Version number
+  example:
+    clientId: "186b5"
+    thingName: "exampleThing"
+    timestamp: 1573002340451
+    eventType: "disconnected"
+    sessionIdentifier: "00000000-0000-0000-0000-000000000000"
+    principalIdentifier: "12345678901234567890123456789012"
+    clientInitiatedDisconnect: true
+    disconnectReason: "CLIENT_INITIATED_DISCONNECT"
+    versionNumber: 0

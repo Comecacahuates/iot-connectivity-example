@@ -1,0 +1,7 @@
+address: event-bus
+description: Event bus where domain events are published (shared across all microservices)
+messages:
+  domainDeviceConnected:
+    $ref: '../../messages/domain/device-connected.yaml'
+  domainDeviceDisconnected:
+    $ref: '../../messages/domain/device-disconnected.yaml'

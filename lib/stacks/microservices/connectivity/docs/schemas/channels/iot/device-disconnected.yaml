@@ -1,0 +1,8 @@
+address: $aws/events/presence/disconnected/{clientId}
+description: AWS IoT device disconnected events (input from IoT Core)
+parameters:
+  clientId:
+    $ref: '../../parameters/client-id.yaml'
+messages:
+  iotDisconnectivityEvent:
+    $ref: '../../messages/iot/disconnectivity-event.yaml'

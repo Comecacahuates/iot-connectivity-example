@@ -1,0 +1,34 @@
+asyncapi: 3.0.0
+info:
+  title: Connectivity Service API
+  version: 1.0.0
+  description: IoT device connectivity monitoring service
+
+channels:
+  # Input channels - IoT Core events
+  iotDeviceConnected:
+    $ref: './channels/iot/device-connected.yaml'
+  iotDeviceDisconnected:
+    $ref: './channels/iot/device-disconnected.yaml'
+  
+  # Output channel - Shared event bus
+  eventBus:
+    $ref: './channels/domain/connectivity-domain.yaml'
+
+components:
+  parameters:
+    clientId:
+      $ref: './parameters/client-id.yaml'
+  
+  messages:
+    # IoT messages (input from AWS IoT Core)
+    IotConnectivityEvent:
+      $ref: './messages/iot/connectivity-event.yaml'
+    IotDisconnectivityEvent:
+      $ref: './messages/iot/disconnectivity-event.yaml'
+    
+    # Domain messages (published to event bus)
+    DomainDeviceConnected:
+      $ref: './messages/domain/device-connected.yaml'
+    DomainDeviceDisconnected:
+      $ref: './messages/domain/device-disconnected.yaml'

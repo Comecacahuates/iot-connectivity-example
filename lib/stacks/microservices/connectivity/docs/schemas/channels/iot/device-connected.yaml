@@ -1,0 +1,8 @@
+address: $aws/events/presence/connected/{clientId}
+description: AWS IoT device connected events (input from IoT Core)
+parameters:
+  clientId:
+    $ref: '../../parameters/client-id.yaml'
+messages:
+  iotConnectivityEvent:
+    $ref: '../../messages/iot/connectivity-event.yaml'

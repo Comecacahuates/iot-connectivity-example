@@ -1,0 +1,2 @@
+description: Client identifier
+location: $message.payload#/clientId
