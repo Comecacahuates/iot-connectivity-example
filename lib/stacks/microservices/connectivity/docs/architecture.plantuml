@@ -26,7 +26,7 @@ IoTCore(iotCore, "IoT Core", "communicates with IoT devices")
 
 EventBridgeCustomEventBus(eventBus, "Event Bus", "transports domain events")
 
-Timestream(connectivityDatabase, "Connectivity Database", "stores connectivity events")
+Timestream(deviceEventsTable, "Device Events Table", "stores device connectivity records")
 
 package "ConnectivityStack" {
   IoTRule(connectivityRule, "Connectivity Rule", "routes connectivity events")
@@ -36,7 +36,7 @@ package "ConnectivityStack" {
   iotCore --> presenceTopic
   presenceTopic --> connectivityRule : presence message
 
-  connectivityRule -> connectivityDatabase : connectivity record
+  connectivityRule -> deviceEventsTable : connectivity record
 
   connectivityRule --> connectivityFunction : connectivity data
   connectivityFunction --> eventBus : connectivity domain events
@@ -45,7 +45,7 @@ package "ConnectivityStack" {
 note right of connectivityRule
 **IoT Rule Permissions**
 |= Service |= Actions |= Resource |
-| Timestream | ""WriteRecords"" | Connectivity Database |
+| Timestream | ""WriteRecords"" | Device Events Table |
 | Lambda | ""InvokeFunction"" | Connectivity Function |
 end note
 
