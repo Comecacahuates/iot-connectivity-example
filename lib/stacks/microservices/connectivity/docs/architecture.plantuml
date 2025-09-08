@@ -11,7 +11,7 @@
 !include AWSPuml/ApplicationIntegration/EventBridgeCustomEventBus.puml
 !include AWSPuml/Database/Timestream.puml
 
-left to right direction
+top to bottom direction
 !theme aws-orange
 
 skinparam package {
@@ -30,16 +30,36 @@ Timestream(connectivityDatabase, "Connectivity Database", "stores connectivity e
 
 package "ConnectivityStack" {
   IoTRule(connectivityRule, "Connectivity Rule", "routes connectivity events")
-  Lambda(connectivityLambda, "Connectivity Lambda", "publishes connectivity domain events")
+  Lambda(connectivityFunction, "Connectivity Function", "publishes connectivity domain events")
 
   iotDevices --> iotCore : connects
   iotCore --> presenceTopic
   presenceTopic --> connectivityRule : presence message
 
-  connectivityDatabase <- connectivityRule : connectivity record
+  connectivityRule -> connectivityDatabase : connectivity record
 
-  connectivityRule --> connectivityLambda : connectivity data
-  connectivityLambda --> eventBus : device_connected/device_disconnected event
+  connectivityRule --> connectivityFunction : connectivity data
+  connectivityFunction --> eventBus : connectivity domain events
 }
+
+note right of connectivityRule
+**IoT Rule Permissions**
+|= Service |= Actions |= Resource |
+| Timestream | ""WriteRecords"" | Connectivity Database |
+| Lambda | ""InvokeFunction"" | Connectivity Function |
+end note
+
+note left of connectivityFunction
+**Connectivity Function Permissions**
+|= Service |= Actions |= Resource |
+| EventBridge | ""PutEvents"" | Event Bus |
+---
+**Configuration**
+|= Property |= Value |
+| Runtime | nodejs18.x |
+| Memory | 256MB |
+| Timeout | 30s |
+| Environment | EVENTBUS_NAME, LOG_LEVEL |
+end note
 
 @enduml
