@@ -1,0 +1,45 @@
+@startuml
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v20.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/AWSSimplified.puml
+!include AWSPuml/InternetOfThings/IoTCore.puml
+!include AWSPuml/InternetOfThings/IoTRule.puml
+!include AWSPuml/InternetOfThings/IoTTopic.puml
+!include AWSPuml/InternetOfThings/IoTThingGeneric.puml
+!include AWSPuml/Compute/Lambda.puml
+!include AWSPuml/ApplicationIntegration/EventBridgeCustomEventBus.puml
+!include AWSPuml/Database/Timestream.puml
+
+left to right direction
+!theme aws-orange
+
+skinparam package {
+  style rectangle
+}
+
+title Connectivity Service Architecture
+
+IoTThingGeneric(iotDevices, "IoT Devices", "announces connectivity events")
+IoTTopic(presenceTopic, "Presence Topic", "transports presence events")
+IoTCore(iotCore, "IoT Core", "communicates with IoT devices")
+
+EventBridgeCustomEventBus(eventBus, "Event Bus", "transports domain events")
+
+Timestream(connectivityDatabase, "Connectivity Database", "stores connectivity events")
+
+package "ConnectivityStack" {
+  IoTRule(connectivityRule, "Connectivity Rule", "routes connectivity events")
+  Lambda(connectivityLambda, "Connectivity Lambda", "publishes connectivity domain events")
+
+  iotDevices --> iotCore : connects
+  iotCore --> presenceTopic
+  presenceTopic --> connectivityRule : presence message
+
+  connectivityDatabase <- connectivityRule : connectivity record
+
+  connectivityRule --> connectivityLambda : connectivity data
+  connectivityLambda --> eventBus : device_connected/device_disconnected event
+}
+
+@enduml
