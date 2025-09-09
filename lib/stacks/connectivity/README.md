@@ -4,14 +4,20 @@
 
 The Connectivity Service provides real-time monitoring and tracking of IoT device connectivity status across your device fleet.
 
+## Architecture Diagram
+
+![IoT Connectivity Service Architecture](docs/architecture.png)
+
 ## Documentation
 
 The `/docs` folder contains comprehensive technical documentation for this service:
 
 ### Architecture Documentation
+
 - **`architecture.plantuml`** - Complete system architecture diagram showing AWS resources, data flow, and IAM permission policies for infrastructure code generation
 
 ### Data Schema Documentation
+
 - **`timestream-schema.md`** - Timestream database schema specification including table structure, data types, and retention policies
 - **`schemas/`** - Event and message schema definitions
   - **`asyncapi-main.yaml`** - AsyncAPI specification for event-driven communication patterns
