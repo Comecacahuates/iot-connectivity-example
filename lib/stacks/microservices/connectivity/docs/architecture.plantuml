@@ -11,14 +11,14 @@
 !include AWSPuml/ApplicationIntegration/EventBridgeCustomEventBus.puml
 !include AWSPuml/Database/Timestream.puml
 
-top to bottom direction
+left to right direction
 !theme aws-orange
 
 skinparam package {
   style rectangle
 }
 
-title Connectivity Service Architecture
+title IoT Connectivity Service Architecture
 
 IoTThingGeneric(iotDevices, "IoT Devices", "announces connectivity events")
 IoTTopic(presenceTopic, "Presence Topic", "transports presence events")
@@ -36,27 +36,27 @@ package "ConnectivityStack" {
   iotCore --> presenceTopic
   presenceTopic --> connectivityRule : presence message
 
-  connectivityRule -> deviceEventsTable : connectivity record
+  deviceEventsTable <- connectivityRule : connectivity record
 
   connectivityRule --> connectivityFunction : connectivity data
   connectivityFunction --> eventBus : connectivity domain events
 }
 
-note right of connectivityRule
+note top of connectivityRule
 **IoT Rule Permissions**
 |= Service |= Actions |= Resource |
 | Timestream | ""WriteRecords"" | Device Events Table |
 | Lambda | ""InvokeFunction"" | Connectivity Function |
 end note
 
-note left of connectivityFunction
+note top of connectivityFunction
 **Connectivity Function Permissions**
 |= Service |= Actions |= Resource |
 | EventBridge | ""PutEvents"" | Event Bus |
 ---
 **Configuration**
 |= Property |= Value |
-| Runtime | nodejs18.x |
+| Runtime | nodejs22.x |
 | Memory | 256MB |
 | Timeout | 30s |
 | Environment | EVENTBUS_NAME, LOG_LEVEL |
