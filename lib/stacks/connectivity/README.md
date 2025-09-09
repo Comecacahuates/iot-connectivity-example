@@ -1,12 +1,12 @@
-# Connectivity Microservice
+# Connectivity Service
 
 ## Overview
 
-The Connectivity Microservice provides real-time monitoring and tracking of IoT device connectivity status across your device fleet.
+The Connectivity Service provides real-time monitoring and tracking of IoT device connectivity status across your device fleet.
 
 ## Documentation
 
-The `/docs` folder contains comprehensive technical documentation for this microservice:
+The `/docs` folder contains comprehensive technical documentation for this service:
 
 ### Architecture Documentation
 - **`architecture.plantuml`** - Complete system architecture diagram showing AWS resources, data flow, and IAM permission policies for infrastructure code generation
