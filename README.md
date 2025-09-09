@@ -1,4 +1,4 @@
-# Experiment: IoT Connectivity Monitoring Service with AI-Assisted IaC
+# Experiment: AI-Assisted Serverless Development Workflow for IoT Connectivity
 
 This project demonstrates an event-driven, serverless architecture for monitoring IoT device connectivity on AWS. It showcases a workflow that leverages design-first principles, AI-powered code generation, and robust documentation.
 
@@ -22,13 +22,13 @@ This project was developed as an experiment to test a methodology of using archi
 
 ## Workflow Highlights
 
-- **Design-First Approach:** Architecture, event contracts (AsyncAPI), and data schemas are defined _before_ infrastructure code generation. You can find these design artifacts in the `docs/` directory.
-- **AI-Assisted IaC:** Design artifacts are fed into an AI coding tool to generate the initial CDK code, accelerating development. The generated infrastructure code for this connectivity stack is located at `lib/stacks/connectivity/connectivity-stack.ts`. For this example, Amazon Q was used to generate this CDK file.
+- **Design-First Approach:** Architecture, event contracts (AsyncAPI), and data schemas are defined _before_ infrastructure code generation. You can find these design artifacts in the [docs/](./lib/stacks/connectivity/docs) directory.
+- **AI-Assisted IaC:** Design artifacts are fed into an AI coding tool (like Amazon Q) to generate the initial CDK code, accelerating development. The generated infrastructure code for this connectivity stack is located at [`connectivity-stack.ts`](./lib/stacks/connectivity/connectivity-stack.ts). For this example, Amazon Q was used to generate this CDK file.
 - **Documentation as Code:** PlantUML diagrams, AsyncAPI specs, and schema definitions serve as the "source of truth" for the system's behavior and structure.
 
 ## Getting Started
 
-For detailed instructions on building, deploying, and testing this project, please refer to the respective documentation within the `docs` directory.
+For detailed instructions on building, deploying, and testing this project, please refer to the respective documentation within the [docs/](./lib/stacks/connectivity/docs) directory.
 
 ### Useful commands
 
