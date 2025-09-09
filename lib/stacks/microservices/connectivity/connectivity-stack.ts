@@ -23,7 +23,7 @@ export class ConnectivityStack extends cdk.Stack {
       this,
       "ConnectivityFunction",
       {
-        runtime: lambda.Runtime.NODEJS_18_X,
+        runtime: lambda.Runtime.NODEJS_22_X,
         handler: "index.handler",
         code: lambda.Code.fromInline(`
         const { EventBridgeClient, PutEventsCommand } = require('@aws-sdk/client-eventbridge');
