@@ -22,8 +22,8 @@ This project was developed as an experiment to test a methodology of using archi
 
 ## Workflow Highlights
 
-- **Design-First Approach:** Architecture, event contracts (AsyncAPI), and data schemas are defined _before_ infrastructure code generation.
-- **AI-Assisted IaC:** Design artifacts are fed into an AI coding tool (like Amazon Q) to generate the initial CDK code, accelerating development.
+- **Design-First Approach:** Architecture, event contracts (AsyncAPI), and data schemas are defined _before_ infrastructure code generation. You can find these design artifacts in the `docs/` directory.
+- **AI-Assisted IaC:** Design artifacts are fed into an AI coding tool to generate the initial CDK code, accelerating development. The generated infrastructure code for this connectivity stack is located at `lib/stacks/connectivity/connectivity-stack.ts`. For this example, Amazon Q was used to generate this CDK file.
 - **Documentation as Code:** PlantUML diagrams, AsyncAPI specs, and schema definitions serve as the "source of truth" for the system's behavior and structure.
 
 ## Getting Started
