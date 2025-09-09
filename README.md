@@ -1,4 +1,4 @@
-# IoT Connectivity Monitoring Service
+# Experiment: IoT Connectivity Monitoring Service with AI-Assisted IaC
 
 This project demonstrates an event-driven, serverless architecture for monitoring IoT device connectivity on AWS. It showcases a workflow that leverages design-first principles, AI-powered code generation, and robust documentation.
 
